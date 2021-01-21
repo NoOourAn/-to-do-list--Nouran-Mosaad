@@ -1,0 +1,16 @@
+{
+  "name": "to-do-list",
+  "version": "0.0.1",
+  "description": "simple cli todoList",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nouran-Mosaad",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^7.0.0",
+    "lodash": "^4.17.20",
+    "lowdb": "^1.0.0"
+  }
+}
