@@ -17,9 +17,9 @@ var sts = ["todo", "in-progress", "done"];
 ///1 - Users can add entry
 program
   .command('add')
-  .option('-t, --title <title>', 'todo title')
+  .option('-t, --title <title>', 'todo title') //this should be required
   .action((options) => {
-
+  //extract to outer functions
         console.log(options);
 
         var counter = db.get('ToDos')
@@ -38,7 +38,7 @@ program
   .action((options) => {
     if(options.status && sts.includes(options.status)){ //if status option enetered (bonus #3)
         console.log(
-          db.get('ToDos')
+          db.get('ToDos') //extract this to a global function
           // .find({status: options.status})  //only get the first matched record
           .filter({status: options.status})
           .value()
@@ -50,6 +50,7 @@ program
         )
     }
     else{ ///if option status was entered wrong
+      //this condition and the above are reversed, here you should print all the statuses and above you should log that it should be one of the statuses
       console.log(`the Todo status should be one of ${sts}`);
 
     }
@@ -62,12 +63,13 @@ program
   .option('-t, --title <title>', 'todo title')
   .requiredOption('-i, --id <id>', 'todo id')
   .action((options) => {
+  //this function is way too long and should be broken down to functions
     if(options.title && options.status && sts.includes(options.status)){
         console.log(options);
 
         db.get('ToDos')
         .find({ id: parseInt(options.id) })
-        .assign({ title: `${options.title}`})
+        .assign({ title: `${options.title}`}) // you can preform the edit once and not twice ({title:options.title,status:options.status})
         .assign({ status: `${options.status}`})
         .write()
 
